@@ -84,11 +84,11 @@ function App() {
                       console.log(length)
                     }}
                   />
-                  <p>len:{length}</p>
+                  <p className="text-white">len:{length}</p>
                 </div>
 
               </div>
-              <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2  classBg text-blue-400 ">
+              <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2  classBg text-white ">
                 <input
                   type="checkbox"
                   defaultChecked={numeric}
@@ -102,7 +102,7 @@ function App() {
                 </label>
               </div>
 
-              <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2  classBg text-blue-400 ">
+              <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2  classBg text-white ">
                 <input
                   type="checkbox"
                   defaultChecked={specialSymbol}
