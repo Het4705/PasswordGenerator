@@ -38,98 +38,103 @@ function App() {
 
   //! we cant't call like this as react don't allow
   // passwordGenerator() 
- 
+
   useEffect(() => {
     if (copy) {
       const timer = setTimeout(() => {
         setCopy(false);
-      }, 2000); 
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [copy]);
-  
+
   useEffect(() => {
     passwordGenerator()
   }, [length, numeric, specialSymbol, setPassword, passwordGenerator])
   return (
     <>
-      <div className="h-[100vh] w-[100vw]  flex flex-col justify-center items-center">
-        <div className=" h-[50%] w-full flex flex-col justify-start items-center max-w-md  bg-gray-900 shadow-md rounded-lg ">
-          <h1 className="text-2xl p-2 m-2 mb-3  text-white " >Password Generator </h1>
-          <div className="flex bg-black h-[15%] shadow bg-t w-[90%] p-3 rounded-lg overflow-hidden mb-4 ">
-            <input
-              className=" rounded-sm p-2  h-8 w-[100%]"
-              type="text"
-              placeholder="Password"
-              value={password}
-              readOnly
-              ref={passwordRef} 
-            />
-            <button onClick={copyPasswordToClipboard} className="ml-3 h-8 hover:shadow-sm hover:bg-slate-300 hover:bg-gradient-to-r from-sky-500 to-indigo-500 bg-white p-1 flex justify-center items-center rounded-sm">COPY</button>
-          </div>
+  
 
-          <div className="flex  w-full justify-around items-center">
-            <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2 w-[40%] bg-black text-blue-400 ">
-              <div className="flex  items-center  " >
+        <div className="h-[100vh] w-[100vw]  flex flex-col justify-center items-center">
+          <div className=" h-[50%] w-full flex flex-col justify-start items-center max-w-md  bg-gray-900 shadow-md rounded-lg ">
+            <h1 className="text-2xl p-2 m-2 mb-3  text-white " >Password Generator </h1>
+            <div className="flex bg-black h-[15%] shadow bg-t w-[90%] p-3 rounded-lg overflow-hidden mb-4 ">
+              <input
+                className=" rounded-sm p-2  h-8 w-[100%]"
+                type="text"
+                placeholder="Password"
+                value={password}
+                readOnly
+                ref={passwordRef}
+              />
+              <button onClick={copyPasswordToClipboard} className="ml-3 h-8 hover:shadow-sm hover:bg-slate-300 hover:bg-gradient-to-r from-sky-500 to-indigo-500 bg-white p-1 flex justify-center items-center rounded-sm">COPY</button>
+            </div>
+
+            <div className="flex  w-full justify-around items-center">
+              <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2 w-[40%] bg-black text-blue-400 ">
+                <div className="flex  items-center  " >
+                  <input
+                    type="range"
+                    min={6}
+                    max={100}
+                    value={length}
+                    className="cursor-pointer mr-1 bg-transparent"
+                    onChange={(e) => {
+                      setLength(e.target.value)
+                      console.log(length)
+                    }}
+                  />
+                  <p>len:{length}</p>
+                </div>
+
+              </div>
+              <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2  bg-black text-blue-400 ">
                 <input
-                  type="range"
-                  min={6}
-                  max={100}
-                  value={length}
-                  className="cursor-pointer mr-1 bg-transparent"
-                  onChange={(e) => {
-                    setLength(e.target.value)
-                    console.log(length)
+                  type="checkbox"
+                  defaultChecked={numeric}
+                  id="numeric"
+                  onChange={() => {
+                    setNumeric(!numeric)
                   }}
                 />
-                <p>len:{length}</p>
+                <label htmlFor="numeric">
+                  Numbers
+                </label>
               </div>
 
-            </div>
-            <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2  bg-black text-blue-400 ">
-              <input
-                type="checkbox"
-                defaultChecked={numeric}
-                id="numeric"
-                onChange={() => {
-                  setNumeric(!numeric)
-                }}
-              />
-              <label htmlFor="numeric">
-                Numbers
-              </label>
-            </div>
+              <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2  bg-black text-blue-400 ">
+                <input
+                  type="checkbox"
+                  defaultChecked={specialSymbol}
+                  id="numeric"
+                  onChange={() => {
+                    setSpecialSymbol(!specialSymbol)
+                  }}
+                />
+                <label htmlFor="specialSymbols">
+                  Symbols
+                </label>
+              </div>
 
-            <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2  bg-black text-blue-400 ">
-              <input
-                type="checkbox"
-                defaultChecked={specialSymbol}
-                id="numeric"
-                onChange={() => {
-                  setSpecialSymbol(!specialSymbol)
-                }}
-              />
-              <label htmlFor="specialSymbols">
-                Symbols
-              </label>
-            </div>
 
+            </div>
+            <div className="mt-20 bg-black text-[#fff] font-mono p-2 w-[90%] rounded-3xl flex flex-col justify-center items-center ">
+              <a href="https://youtube.com/playlist?list=PLu71SKxNbfoDqgPchmvIsL4hTnJIrtige&feature=shared">
+                <h1>Chai Aur React | Hitesh Sir</h1>
+              </a>
+            </div>
+            {/* this is how to add conditional statement */}
+            {(specialSymbol && !copy) && <p className="text-[#eee]">SpecialSymbols are added to password</p>}
+
+            {(numeric && !copy) && <p className="text-[#eee]">Numerics are added to password</p>}
+            {copy && <p className="text-[#eee]">Copied To Clipboard</p>}
 
           </div>
-          <div className="mt-20 bg-black text-[#fff] font-mono p-2 w-[90%] rounded-3xl flex flex-col justify-center items-center ">
-            <h1>Chai Aur React | Hitesh Sir</h1>
-          </div>
-          {/* this is how to add conditional statement */}
-          {(specialSymbol && !copy) && <p className="text-[#eee]">SpecialSymbols are added to password</p>}
 
-          {(numeric && !copy) && <p className="text-[#eee]">Numerics are added to password</p>}
-          {copy && <p className="text-[#eee]">Copied To Clipboard</p>}
-
+          <h1 className="text-white mt-8 text-yellow-300">React<em className="text-cyan-300"> Hooks</em></h1>
         </div>
-        
-      <h1 className="text-white mt-8">React<em> Hooks</em></h1>
-      </div>
-    
+
+       
     </>
   )
 }
