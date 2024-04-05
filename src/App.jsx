@@ -12,7 +12,7 @@ function App() {
 
   const copyPasswordToClipboard = useCallback(() => {
     passwordRef.current?.select();
-    passwordRef.current?.setSelectionRange(0, 20);
+    passwordRef.current?.setSelectionRange(0, 100);
     window.navigator.clipboard.writeText(password)
     setCopy(true)
   }, [password]) // dependency is password as we need to callback on change of password
@@ -56,9 +56,9 @@ function App() {
   
 
         <div className="h-[100vh] w-[100vw]  flex flex-col justify-center items-center">
-          <div className=" h-[50%] w-full flex flex-col justify-start items-center max-w-md  bg-gray-900 shadow-md rounded-lg ">
-            <h1 className="text-2xl p-2 m-2 mb-3  text-white " >Password Generator </h1>
-            <div className="flex bg-black h-[15%] shadow bg-t w-[90%] p-3 rounded-lg overflow-hidden mb-4 ">
+          <div id="main" className=" border-y-slate-600 border-t-[0.5px]  shadow-slate-900 shadow-2xl h-[50%] w-full flex flex-col justify-start items-center max-w-md  shadow-md rounded-lg ">
+            <h1 className="text-2xl p-2 m-2 mb-3  text-[#f4fff1]" id="heading" >Password Generator </h1>
+            <div className="flex classBg h-[15%] shadow bg-t w-[90%] p-3 rounded-lg overflow-hidden mb-4 ">
               <input
                 className=" rounded-sm p-2  h-8 w-[100%]"
                 type="text"
@@ -71,7 +71,7 @@ function App() {
             </div>
 
             <div className="flex  w-full justify-around items-center">
-              <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2 w-[40%] bg-black text-blue-400 ">
+              <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2 w-[40%] classBg text-blue-400 ">
                 <div className="flex  items-center  " >
                   <input
                     type="range"
@@ -88,7 +88,7 @@ function App() {
                 </div>
 
               </div>
-              <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2  bg-black text-blue-400 ">
+              <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2  classBg text-blue-400 ">
                 <input
                   type="checkbox"
                   defaultChecked={numeric}
@@ -102,7 +102,7 @@ function App() {
                 </label>
               </div>
 
-              <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2  bg-black text-blue-400 ">
+              <div className="flex p-2 rounded-lg justify-center text-sm gap-x-2  classBg text-blue-400 ">
                 <input
                   type="checkbox"
                   defaultChecked={specialSymbol}
@@ -118,7 +118,7 @@ function App() {
 
 
             </div>
-            <div className="mt-20 bg-black text-[#fff] font-mono p-2 w-[90%] rounded-3xl flex flex-col justify-center items-center ">
+            <div className="mt-20 classBg text-[#fff] font-mono p-2 w-[90%] rounded-3xl flex flex-col justify-center items-center ">
               <a href="https://youtube.com/playlist?list=PLu71SKxNbfoDqgPchmvIsL4hTnJIrtige&feature=shared">
                 <h1>Chai Aur React | Hitesh Sir</h1>
               </a>
@@ -134,7 +134,6 @@ function App() {
           <h1 className="text-white mt-8 text-yellow-300">React<em className="text-cyan-300"> Hooks</em></h1>
         </div>
 
-       
     </>
   )
 }
